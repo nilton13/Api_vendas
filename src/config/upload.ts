@@ -12,7 +12,7 @@ export default{
             // Criando um hash para impedir dois arquivos com o mesmo nome do servidor.
             const fileHash = crypto.randomBytes(10).toString('hex');
 
-            const filename = `${fileHash}-${file.originalname}`;
+            const filename = `${fileHash} - ${file.originalname}`;
 
             callback(null, filename);
         },
