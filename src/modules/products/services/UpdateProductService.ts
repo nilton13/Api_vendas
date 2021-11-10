@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import RedisCache from "../../../shared/cache/RedisCache";
 import AppError from "../../../shared/errors/AppError";
 import Product from "../typeorm/entities/Product";
 import { ProductRepository } from "../typeorm/repositories/ProductsRepository";
@@ -30,6 +31,11 @@ class UpdateProductService {
             // Utilizando a classe AppError criada anteriormente para tratamento de erros.
             throw new AppError('There is already one product with this name')
         }
+        
+        const redisCache = new RedisCache();
+
+        //Invalidando o Cache para atualização dos produtos.
+        await redisCache.invalidate('api-vendas-PRODUCT_LIST');
 
         // Editando os campos.
         product.name = name;

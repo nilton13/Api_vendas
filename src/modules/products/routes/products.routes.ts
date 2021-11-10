@@ -23,7 +23,7 @@ productsRouter.post(
         [Segments.BODY]: {
             name: Joi.string().required(),
             price: Joi.number().precision(2).required(),
-            quatity: Joi.number().required()
+            quantity: Joi.number().required()
         },
     }),
     productsController.create
@@ -35,7 +35,7 @@ productsRouter.put(
         [Segments.BODY]: {
             name: Joi.string().required(),
             price: Joi.number().precision(2).required(),
-            quatity: Joi.number().required()
+            quantity: Joi.number().required()
         },
         [Segments.PARAMS]: {// Validação que verifica se o parâmetro ID é uma String do tipo uuid.
             id: Joi.string().uuid().required(),
